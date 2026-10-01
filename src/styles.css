@@ -1,1 +1,144 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  background: #fff;
+}
+
+.stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f3f3;
+  padding: 32px 16px;
+}
+
+.card {
+  width: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 22px 24px 16px;
+}
+
+.card.feedback {
+  width: 380px;
+}
+
+.card.admin {
+  width: 760px;
+  max-width: 100%;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 6px 8px;
+  border: 1px solid #c8c8c8;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+button {
+  font: inherit;
+  font-size: 14px;
+  color: #222;
+  background: #d6d6d6;
+  border: 1px solid #b0b0b0;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button[type='submit'] {
+  width: 100%;
+  margin-top: 2px;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+button.link {
+  display: inline;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #0645ad;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.footer-link {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+.footer-link a {
+  color: #0645ad;
+}
+
+.error {
+  margin: 0 0 10px;
+  color: #a40000;
+  font-size: 13px;
+}
+
+.success,
+.hint {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.success {
+  color: #1b7a1b;
+}
+
+.hint {
+  color: #444;
+}
+
+.panel {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.panel-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.panel-text {
+  margin: 0 0 10px;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.panel-actions button {
+  width: auto;
+  margin: 0 8px 0 0;
+}

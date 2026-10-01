@@ -1,0 +1,54 @@
+<div class="stage">
+  <div class="card feedback">
+    <h1>Feedback</h1>
+
+    <div class="modes">
+      <button type="button" [class.active]="mode === 'add'" (click)="setMode('add')">Add Feedback</button>
+      <button type="button" [class.active]="mode === 'edit'" (click)="setMode('edit')">Edit Feedback</button>
+    </div>
+
+    <form (ngSubmit)="submit()">
+      @if (mode === 'edit') {
+        <label class="field-label" for="existing">Previous feedback</label>
+        @if (myFeedback.length === 0) {
+          <select id="existing" disabled>
+            <option>No feedback submitted yet</option>
+          </select>
+        } @else {
+          <select id="existing" name="existing" [ngModel]="selectedId" (ngModelChange)="onSelect($event)">
+            @for (item of myFeedback; track item.id) {
+              <option [value]="item.id">{{ optionLabel(item) }}</option>
+            }
+          </select>
+        }
+      }
+      @if (mode === 'edit' && selected) {
+        <p class="hint">Submitted on {{ selected.date }}</p>
+      }
+
+      <label class="field-label" for="message">Your Feedback</label>
+      <textarea
+        id="message"
+        name="message"
+        [(ngModel)]="message"
+        placeholder="Write your feedback here..."
+        [readonly]="mode === 'edit' && myFeedback.length === 0"
+      ></textarea>
+
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+      @if (success) {
+        <p class="success">{{ success }}</p>
+      }
+
+      <button type="submit" [disabled]="loading || (mode === 'edit' && myFeedback.length === 0)">
+        Submit
+      </button>
+    </form>
+
+    <p class="footer-link">
+      <button type="button" class="link" (click)="logout()">Log Out</button>
+    </p>
+  </div>
+</div>

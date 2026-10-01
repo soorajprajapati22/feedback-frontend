@@ -1,0 +1,79 @@
+<div class="stage">
+  <div class="card admin">
+    <h1>Admin Feedback Dashboard</h1>
+
+    @if (error && panel !== 'edit') {
+      <p class="error">{{ error }}</p>
+    }
+    @if (success) {
+      <p class="success">{{ success }}</p>
+    }
+
+    @if (!loaded) {
+      <p class="hint">Loading...</p>
+    } @else if (items.length === 0) {
+      <p class="hint">No feedback yet.</p>
+    } @else {
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Feedback</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of items; track item.id) {
+              <tr>
+                <td>{{ item.id }}</td>
+                <td class="message">{{ item.message }}</td>
+                <td class="date">{{ item.date }}</td>
+                <td class="actions">
+                  <button type="button" (click)="view(item)">View</button>
+                  <button type="button" (click)="startEdit(item)">Edit</button>
+                  <button type="button" (click)="remove(item)">Delete</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <p class="footer-link">
+      <button type="button" class="link" (click)="logout()">Log Out</button>
+    </p>
+  </div>
+</div>
+
+@if (panel === 'view' && active) {
+  <div class="modal-backdrop" (click)="closePanel()">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="View Feedback" (click)="$event.stopPropagation()">
+      <h2>View Feedback</h2>
+      <p class="hint">By {{ active.username }} on {{ active.date }}</p>
+      <p class="modal-text">{{ active.message }}</p>
+      <div class="modal-actions">
+        <button type="button" (click)="closePanel()">Close</button>
+      </div>
+    </div>
+  </div>
+}
+
+@if (panel === 'edit' && active) {
+  <div class="modal-backdrop" (click)="closePanel()">
+    <form class="modal" role="dialog" aria-modal="true" aria-label="Edit Feedback" (ngSubmit)="saveEdit()" (click)="$event.stopPropagation()">
+      <h2>Edit Feedback</h2>
+      <label class="field-label" for="editMessage">Feedback</label>
+      <textarea id="editMessage" name="editMessage" [(ngModel)]="editMessage"></textarea>
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+      <div class="modal-actions">
+        <button type="submit" [disabled]="loading">Save</button>
+        <button type="button" (click)="closePanel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+}

@@ -1,0 +1,23 @@
+.modes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.modes button {
+  width: 130px;
+  background: #d9d9d9;
+  border: 1px solid #b5b5b5;
+}
+
+.modes button.active {
+  background: #fff;
+  border: 2px solid #333;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+}

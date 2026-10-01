@@ -1,0 +1,24 @@
+<div class="stage">
+  <form class="card" (ngSubmit)="submit()">
+    <h1>Login</h1>
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+    @if (info) {
+      <p class="success">{{ info }}</p>
+    }
+
+    <input name="username" [(ngModel)]="username" placeholder="Username" autocomplete="username" />
+    <input
+      name="password"
+      type="password"
+      [(ngModel)]="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    />
+
+    <button type="submit" [disabled]="loading">Log in</button>
+    <p class="footer-link">Don't have an account? <a routerLink="/register">Sign Up</a></p>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+<div class="stage">
+  <form class="card" (ngSubmit)="submit()">
+    <h1>Register</h1>
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    <input name="username" [(ngModel)]="username" placeholder="Username" autocomplete="username" />
+    <input name="email" type="email" [(ngModel)]="email" placeholder="Email" autocomplete="email" />
+    <input
+      name="password"
+      type="password"
+      [(ngModel)]="password"
+      placeholder="Password"
+      autocomplete="new-password"
+    />
+    <input
+      name="confirmPassword"
+      type="password"
+      [(ngModel)]="confirmPassword"
+      placeholder="Confirm Password"
+      autocomplete="new-password"
+    />
+
+    <button type="submit" [disabled]="loading">Sign Up</button>
+    <p class="footer-link">Already have an account? <a routerLink="/login">Log in</a></p>
+  </form>
+</div>
